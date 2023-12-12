@@ -1,8 +1,10 @@
 # eBPF-ReTRAC
 
+- Authors: [Anna Ablove](https://www.ablove.dev/), [Aaron Ortwein](https://aaron-ortwein.github.io), [Kaifeng Liu](https://github.com/RSTdefg), [Wayne Wang](https://waynewang.me)
+
 ## Introduction
 
-eBPF-ReTRAC is a kernel-level, eBPF-based system for evading Internet censorship policies automatically enforced by network devices in state-controlled or otherwise censoring networks. Assuming that there exists at least one uncensored route between a client and destination, and that there exists a load-balancing router at a hop prior to the censoring middlebox, eBPF-ReTRAC can force virually all HTTP traffic to traverse uncensored routes. eBPF-ReTRAC operates in two phases: it first probes for which source ports will cause load-balancing of packets along uncensored paths (which we term "free ports"), and then rewrites the source ports of all subsequent HTTP packets to known free ports. It is deployed only at the client without requiring the cooperation of other network devices such as Internet routers or the destination server.
+eBPF-ReTRAC is a kernel-level, eBPF-based system for evading Internet censorship policies automatically enforced by network devices in state-controlled or otherwise censoring networks. Assuming that there exists at least one uncensored route between a client and destination, and that there exists a load-balancing router at a hop prior to the censoring middlebox, eBPF-ReTRAC can force virtually all HTTP traffic to traverse uncensored routes. eBPF-ReTRAC operates in two phases: it first probes for which source ports will cause load-balancing of packets along uncensored paths (which we term "free ports"), and then rewrites the source ports of all subsequent HTTP packets to known free ports. It is deployed only at the client without requiring the cooperation of other network devices such as Internet routers or the destination server.
 
 ## Usage
 
@@ -41,5 +43,5 @@ The current implementation remains a proof-of-concept that is only tested in a v
   1. `vagrant ssh client`
   2. `cd /vagrant`
   3. `./setup_ebpf_retrac.sh <interface> [--teardown]`
-    - An network interface must be specified to load eBPF-ReTRAC on. The teardown option removes the eBPF program from the interface and cleans cached free ports.
+    - A network interface must be specified to load eBPF-ReTRAC on. The teardown option removes the eBPF program from the interface and cleans cached free ports.
     - Example: `./setup_ebpf_retrac.sh eth1 --teardown`, then `./setup_ebpf_retrac.sh eth1`
