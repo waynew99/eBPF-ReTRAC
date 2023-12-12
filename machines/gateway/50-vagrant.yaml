@@ -1,0 +1,19 @@
+---
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth1:
+      addresses:
+      - 10.0.1.2/24
+    eth2:
+      addresses:
+      - 10.0.2.2/24
+      # routes:
+      # - to: 10.0.4.0/24
+      #   via: 10.0.2.3
+    eth3:
+      addresses:
+      - 10.0.3.2/24
+      
+      
